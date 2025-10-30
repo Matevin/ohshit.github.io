@@ -1,0 +1,25 @@
+:root{--bg:#0b0b0e;--muted:#d6d6d6;--accent:#ff66c4}
+*{box-sizing:border-box}
+body{font-family:Inter,Arial,Helvetica,sans-serif;margin:0;background:repeating-linear-gradient(90deg,#031 0 10px,#013 10px 20px);color:white}
+.top{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:linear-gradient(90deg,#111,#222)}
+.logo{font-weight:900;letter-spacing:1px}
+nav a{color:#ffe;padding:6px;text-decoration:none}
+.container{display:grid;grid-template-columns:220px 1fr;gap:12px;padding:20px;max-width:1100px;margin:0 auto}
+.sidebar{background:rgba(255,255,255,0.03);padding:12px;border-radius:8px}
+.content{background:rgba(0,0,0,0.2);padding:18px;border-radius:10px}
+.lead{color:var(--muted)}
+.cards{display:flex;gap:12px;margin-top:12px}
+.card{padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
+.big-card{flex:2}
+.small{font-size:13px;color:#ccc}
+.foot{text-align:center;padding:18px;color:#bbb}
+.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.game{background:rgba(0,0,0,0.25);padding:12px;border-radius:8px}
+.link{display:inline-block;padding:6px 8px;border-radius:8px;background:linear-gradient(90deg,#ff7,#ff6);color:#111;text-decoration:none;margin-right:6px}
+.input{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit}
+.btn{padding:8px 12px;border-radius:8px;background:linear-gradient(90deg,#7c3aed,#4f46e5);border:none;color:white}
+.tiny{font-size:12px;color:#ddd}
+
+
+/* intentionally tacky border background */
+body::before{content:'';position:fixed;inset:0;z-index:-1;background-image:url('/assets/pattern.png');opacity:0.12}

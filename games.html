@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Репозиторий — игры</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="logo">Репо — Список игр</div><nav><a href="/">Главная</a> · <a href="admin.html">Админ</a></nav></header>
+<main class="container">
+<section class="content">
+<h1>Список игр</h1>
+<p class="meta">Скачивайте только легальные файлы. Ссылки ведут на внешние хосты или GitHub Releases, если указано.</p>
+<div id="gamesList">Загрузка...</div>
+</section>
+</main>
+<footer class="foot">Сайт — стилизованный мусор.</footer>
+<script>
+// Пробуем загрузить games.json локально из /data/games.json
+(async function(){
+const out = document.getElementById('gamesList');
+try{
+const r = await fetch('data/games.json');
+if(!r.ok) throw new Error(' сайт ранен не найден data/games.json');
+const data = await r.json();
+if(!Array.isArray(data) || !data.length){ out.innerHTML = '<div class="meta">Пусто — добавьте элементы в data/games.json</div>'; return }
+const el = document.createElement('div'); el.className='games-grid';
+data.forEach(it=>{
+const g = document.createElement('div'); g.className='game';
+g.innerHTML = `<h3>${escapeHtml(it.title)}</h3><p class="desc">${escapeHtml(it.desc||'')}</p><div class="links">${(it.links||[]).map(l=>`<a class=link href="${escapeHtml(l.url)}" target=_blank>${escapeHtml(l.label||'Скачать')}</a>`).join(' ')}</div>`;
+el.appendChild(g);
+});
+out.innerHTML=''; out.appendChild(el);
+}catch(err){ out.innerHTML = '<div class="meta">не удалось загрузить список <code>data/games.json</code>.</div>'; console.error(err)}
+
+
+function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"})[c])}
+})();
+</script>
+</body>
+</html>
